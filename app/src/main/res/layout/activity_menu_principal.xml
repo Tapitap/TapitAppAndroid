@@ -43,7 +43,9 @@
             android:layout_height="match_parent"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border_button"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/menu2"
+            android:fontFamily="@font/summer"
             android:text="Carta Comida"
             android:textColor="@color/white" />
 
@@ -53,8 +55,10 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border_button"
             android:text="Bebidas"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/bebidas"
+            android:fontFamily="@font/summer"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -76,8 +80,10 @@
             android:layout_height="match_parent"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border_button"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/postre1"
             android:text="Postres"
+            android:fontFamily="@font/summer"
             android:textColor="@color/white" />
 
         <Button
@@ -86,8 +92,10 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border_button"
+            android:drawableTop="@drawable/cocktail"
+            android:background="@color/colorPrimary"
             android:text="Combinados"
+            android:fontFamily="@font/summer"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -108,8 +116,10 @@
             android:layout_height="match_parent"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border_button"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/cuenta2"
             android:text="Cuenta"
+            android:fontFamily="@font/summer"
             android:textColor="@color/white" />
 
         <Button
@@ -118,8 +128,10 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border_button"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/cerrarsesion"
             android:text="Cerrar Sesion"
+            android:fontFamily="@font/summer"
             android:textColor="@color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

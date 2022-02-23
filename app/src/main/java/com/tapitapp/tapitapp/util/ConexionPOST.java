@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -28,8 +29,7 @@ public class ConexionPOST extends AsyncTask<String, String, String> {
             connection.setDoOutput(true);
             OutputStream outputStream = connection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
-            String data = URLEncoder.encode("username","UTF-8") + "=" + URLEncoder.encode(params[1],"UTF-8")
-                    + "&" + URLEncoder.encode("password","UTF-8") + "=" + URLEncoder.encode(params[2],"UTF-8");
+            String data = ParametrosURL(params);
             bufferedWriter.write(data);
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -71,5 +71,16 @@ public class ConexionPOST extends AsyncTask<String, String, String> {
             //resultado = "Se ha producido un Error, comprueba tu conexion a internet";
         }
         return null;
+    }
+
+    private String ParametrosURL(String... params) throws UnsupportedEncodingException {
+        String data = "";
+        for(int i = 1; i < params.length-1; i++){
+            data += URLEncoder.encode(params[i],"UTF-8");
+
+            if(i%2 == 0){data += "&";}else{data += "=";}
+        }
+        data += URLEncoder.encode(params[params.length-1],"UTF-8");
+        return data;
     }
 }

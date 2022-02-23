@@ -15,7 +15,7 @@ public class MesasRepository {
         boolean res = false;
         ConexionPOST conexionPOST = new ConexionPOST();
         try{
-            String[] params = {"http://tapitapp.orgfree.com/servicioPHP/login.php",username,password};
+            String[] params = {"http://tapitapp.orgfree.com/servicioPHP/MesaUser/login.php","username",username,"password",password};
             String result = conexionPOST.execute(params).get();
             JSONObject json = new JSONObject(result);
 
@@ -42,7 +42,7 @@ public class MesasRepository {
 
         ConexionGET conexionGET = new ConexionGET();
         try{
-            String result = conexionGET.execute("http://tapitapp.orgfree.com/servicioPHP/MesaUser_username.php?username=" + username).get();
+            String result = conexionGET.execute("http://tapitapp.orgfree.com/servicioPHP/MesaUser/getByUsername.php?username=" + username).get();
             JSONObject json = new JSONObject(result);
 
             String estado = json.getString("estado");

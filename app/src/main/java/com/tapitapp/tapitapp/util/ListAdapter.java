@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tapitapp.tapitapp.R;
@@ -46,20 +45,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView img;
-        TextView nombre,descripcion,tipo;
+        TextView nombre,descripcion,precio;
 
         ViewHolder(View itemView){
             super(itemView);
            img=itemView.findViewById(R.id.imgElemento);
            nombre=itemView.findViewById(R.id.txtTituloPlato);
            descripcion=itemView.findViewById(R.id.txtDescripcion);
-           tipo=itemView.findViewById(R.id.txtTipoPlato);
+           precio=itemView.findViewById(R.id.txtPrecio);
         }
 
         void bindData(final Productos item){
             nombre.setText(item.getNombre());
             descripcion.setText(item.getDescripcion());
-            tipo.setText(item.getTipoPlato());
+            precio.setText(item.getPrecio().toString()+"€");
 
 
         }

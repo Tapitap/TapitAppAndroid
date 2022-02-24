@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnLog;
     String user,pass;
     private MesasRepository repository = new MesasRepository();
-
+    private Mesas mesa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     boolean res = repository.getLogin(user,pass);
                     if(res) {
-                        Mesas mesa = repository.GetByUsername(user);
+                        mesa = repository.GetByUsername(user);
                         Intent intent = new Intent(getApplicationContext(),MenuPrincipal.class);
                         guardarPreferencias();
                         startActivity(intent);
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("usuario",user);
         editor.putString("password",pass);
         editor.putBoolean("sesion", true);
+        editor.putInt("id_manager",mesa.getId_manager());
         editor.commit();
     }
     private void RecuperarPreferencias(){

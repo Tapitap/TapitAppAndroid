@@ -60,6 +60,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             nombre.setText(item.getNombre());
             descripcion.setText(item.getDescripcion());
             tipo.setText(item.getTipoPlato());
+
+
         }
     }
 }

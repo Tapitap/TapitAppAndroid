@@ -11,16 +11,14 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MenuPrincipal extends AppCompatActivity {
 
     Button cerrar;
     Button cartacomida;
+    Button cartaBebida;
+    Button cartaPostre;
+    Button cartaCombinados;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +26,11 @@ public class MenuPrincipal extends AppCompatActivity {
 
         cerrar=findViewById(R.id.btnCerrar);
         cartacomida=(Button)findViewById(R.id.btnCarta);
+        cartaBebida=(Button)findViewById(R.id.btnBebidas);
+        cartaPostre=(Button)findViewById(R.id.btnPostres);
+        cartaCombinados=(Button)findViewById(R.id.btnCombinados);
+
+
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,14 +42,40 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
+        cartaCombinados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(), BotonEleccion.class);
+                intent.putExtra("tipo","combinado");
+                startActivity(intent);
+            }
+        });
+        cartaPostre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(), BotonEleccion.class);
+                intent.putExtra("tipo","postre");
+                startActivity(intent);
+            }
+        });
+        cartaBebida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(), BotonEleccion.class);
+                intent.putExtra("tipo","bebida");
+                startActivity(intent);
+            }
+        });
 
         cartacomida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),CartaComida.class);
+                Intent intent=new Intent(getApplicationContext(), BotonEleccion.class);
+                intent.putExtra("tipo","comida");
                 startActivity(intent);
             }
         });
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

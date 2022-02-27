@@ -1,4 +1,4 @@
-# Aplicacion TapitApp para Windows
+# Aplicacion TapitApp para Android
 
 _Esta aplicacion de android sirve para que los clientes de un establecimiento con TapitApp realicen comandas en un entorno centralizado de datos, en un host con MySQL. Tiene como objetivo optimizar el tiempo y el trabajo de los meseros en atender a sus clientes y tener un control informatizado de las comandas y de las cuentas solicitadas._
 

@@ -7,42 +7,32 @@ import com.tapitapp.tapitapp.util.ConexionPOST;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MesasRepository {
 
-    public boolean getLogin(String username,String password) throws Exception {
-        boolean res = false;
+    public String getLogin(String username, String password) throws Exception {
         ConexionPOST conexionPOST = new ConexionPOST();
-        try{
-            String[] params = {"http://tapitapp.orgfree.com/servicioPHP/MesaUser/login.php","username",username,"password",password};
-            String result = conexionPOST.execute(params).get();
-            JSONObject json = new JSONObject(result);
+        String[] params = {"http://tapitapp.orgfree.com/servicioPHP/Users/login.php","username",username,"password",password};
+        String result = conexionPOST.execute(params).get();
+        JSONObject json = new JSONObject(result);
 
-            String estado = json.getString("estado");
+        String estado = json.getString("estado");
 
-            switch (estado) {
-                case "1":
-                    return true;
-                case "-1":
-                    throw new Exception(json.getString("mensaje"));
-            }
-        }catch (JSONException e){
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        if(estado.equals("1")){
+            return json.getString("authority");
+        }else{
+            throw new Exception(json.getString("mensaje"));
         }
-        return res;
     }
 
     public Mesas GetByUsername(String username){
         Mesas mesa = null;
-
         ConexionGET conexionGET = new ConexionGET();
         try{
-            String result = conexionGET.execute("http://tapitapp.orgfree.com/servicioPHP/MesaUser/getByUsername.php?username=" + username).get();
+            String result = conexionGET.execute("http://tapitapp.orgfree.com/servicioPHP/Users/getMesaByUsername.php?username=" + username).get();
             JSONObject json = new JSONObject(result);
 
             String estado = json.getString("estado");
@@ -62,11 +52,11 @@ public class MesasRepository {
     private Mesas parseJSONToMesa(JSONObject json) throws JSONException {
 
         String user = json.getString("username");
-        boolean enable = Boolean.parseBoolean(json.getString("enable"));
+        boolean enable = !Boolean.parseBoolean(json.getString("enable"));
         Integer numero = Integer.parseInt(json.getString("numero"));
         Integer id_manager = Integer.parseInt(json.getString("enable"));
         String authority = json.getString("authority");
 
-        return new Mesas(user,null,authority,numero,id_manager);
+        return new Mesas(user,enable,authority,numero,id_manager);
     }
 }

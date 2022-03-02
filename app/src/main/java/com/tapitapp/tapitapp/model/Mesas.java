@@ -1,15 +1,40 @@
 package com.tapitapp.tapitapp.model;
 
-public class Mesas extends Users{
+public class Mesas{
 
+    private String username;
+    private boolean enable;
+    private String authority;
     private Integer num;
     private Integer id_manager;
 
-    public Mesas(String username, String password, String authority, Integer num, Integer id_manager) {
-        super(username, password, authority);
+    public Mesas(String username, boolean enable, String authority, Integer num, Integer id_manager) {
+        this.username = username;
+        this.enable = enable;
+        this.authority = authority;
         this.num = num;
         this.id_manager = id_manager;
     }
+
+    public String getUsername(){
+        return this.username;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public boolean getEnable(){
+        return this.enable;
+    }
+
+    public void setEnable(boolean enable){
+        this.enable = enable;
+    }
+
+    public String getAuthority() {return this.authority;}
+
+    public void setAuthority(String authority){this.authority = authority;}
 
     public Integer getNum(){
         return this.num;

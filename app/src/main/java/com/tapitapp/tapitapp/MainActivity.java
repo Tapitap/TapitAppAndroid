@@ -45,12 +45,20 @@ public class MainActivity extends AppCompatActivity {
                 user=txtUser.getText().toString();
                 pass=txtPass.getText().toString();
                 try{
-                    boolean res = repository.getLogin(user,pass);
-                    if(res) {
-                        mesa = repository.GetByUsername(user);
-                        Intent intent = new Intent(getApplicationContext(),MenuPrincipal.class);
-                        guardarPreferencias();
-                        startActivity(intent);
+                    String res = repository.getLogin(user,pass);
+                    switch (res){
+                        case "mesa":
+                            mesa = repository.GetByUsername(user);
+                            Intent intent = new Intent(getApplicationContext(),MenuPrincipal.class);
+                            guardarPreferencias();
+                            startActivity(intent);
+                            break;
+                        case "admin":
+                            Toast.makeText(MainActivity.this,"Usuario no soportado",Toast.LENGTH_SHORT).show();
+                            break;
+                        case "manager":
+                            Toast.makeText(MainActivity.this,"Usuario no soportado",Toast.LENGTH_SHORT).show();
+                            break;
                     }
                 }catch (Exception e){
                     Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -69,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("usuario",user);
         editor.putString("password",pass);
         editor.putBoolean("sesion", true);
+        editor.putInt("numero",mesa.getNum());
         editor.putInt("id_manager",mesa.getId_manager());
         editor.commit();
     }

@@ -71,7 +71,8 @@
                 android:layout_marginRight="6dp"
                 android:text="precio"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="invisible" />
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

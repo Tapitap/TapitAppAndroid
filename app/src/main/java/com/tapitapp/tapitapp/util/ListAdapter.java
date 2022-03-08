@@ -12,20 +12,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tapitapp.tapitapp.R;
 import com.tapitapp.tapitapp.model.Productos;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private List<Productos>productos;
+    private List<String> nombres;
+    private List<Productos> productos;
     private LayoutInflater inflater;
     private Context context;
 
-    public ListAdapter(List<Productos> productos, Context context) {
+    public ListAdapter(List<String> nombres, List<Productos> productos, Context context) {
         this.inflater=LayoutInflater.from(context);
+        this.nombres = nombres;
         this.productos = productos;
         this.context = context;
     }
     @Override
-    public int getItemCount(){return productos.size(); }
+    public int getItemCount(){return nombres.size(); }
 
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -36,11 +40,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position) {
-        holder.bindData(productos.get(position));
+        holder.bindData(nombres.get(position));
     }
 
-    public void setItems(List<Productos>items){
-        productos=items;
+    public void setItems(List<String>items){
+        nombres=items;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -55,12 +59,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
            precio=itemView.findViewById(R.id.txtPrecio);
         }
 
-        void bindData(final Productos item){
-            nombre.setText(item.getNombre());
-            descripcion.setText(item.getDescripcion());
-            precio.setText(item.getPrecio().toString()+"€");
-
-
+        void bindData(final String item){
+            List<Productos> prod = new ArrayList<>(productos.stream().filter(x -> x.getNombre().equals(item)).collect(Collectors.toList()));
+            nombre.setText(item);
+            if(prod.get(0).getTipo().equals("comida")) {
+                String descrip = "";
+                for (Productos p : prod) {
+                    descrip += p.getTipoPlato() + ": " + p.getPrecio() + "€ ";
+                }
+                descripcion.setText(descrip);
+            }else{
+                precio.setVisibility(View.VISIBLE);
+                precio.setText(prod.get(0).getPrecio().toString()+"€");
+                descripcion.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }

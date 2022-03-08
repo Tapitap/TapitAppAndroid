@@ -10,12 +10,15 @@ import com.tapitapp.tapitapp.model.Productos;
 import com.tapitapp.tapitapp.repository.ProductosRepository;
 import com.tapitapp.tapitapp.util.ListAdapter;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BotonEleccion extends AppCompatActivity {
 
     private ProductosRepository repository = new ProductosRepository();
-    List<Productos> producto;
+    List<String> nombres;
+    List<Productos> productos;
     String tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,9 @@ public class BotonEleccion extends AppCompatActivity {
     public void init(){
         tipo=getIntent().getStringExtra("tipo");
 
-        producto = repository.GetProductoByTipo(1,tipo);
-        ListAdapter ListAdapter = new ListAdapter(producto,this);
+        productos = repository.GetProductoByTipo(1,tipo);
+        nombres = productos.stream().map(x->x.getNombre()).distinct().collect(Collectors.toList());
+        ListAdapter ListAdapter = new ListAdapter(nombres, productos,this);
         RecyclerView recyclerView=findViewById(R.id.listProduct);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this ));

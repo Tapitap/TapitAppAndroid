@@ -30,6 +30,7 @@ public class ProductosRepository {
                         Productos producto = parseJSONToProducto(object);
                         productos.add(producto);
                     }
+                    break;
                 case "-1":
                     throw new Exception(json.getString("mensaje"));
             }
@@ -43,13 +44,13 @@ public class ProductosRepository {
     }
     private Productos parseJSONToProducto(JSONObject json) throws JSONException {
 
-        String nombre = json.getString("nombre");
-        String descripcion = json.getString("descripcion");
-        Double precio = Double.parseDouble(json.getString("precio"));
-        Integer id_manager = Integer.parseInt(json.getString("id_manager"));
-        Integer id_producto = Integer.parseInt(json.getString("id"));
-        String tipo = json.getString("tipo");
-        String tipoPlato = json.getString("tipoplato");
+        String nombre = json.isNull("nombre")?null:json.getString("nombre");
+        String descripcion = json.isNull("descripcion")?null:json.getString("descripcion");
+        Double precio = json.isNull("precio")?null:json.getDouble("precio");
+        Integer id_manager = json.isNull("id_manager")?null:json.getInt("id_manager");
+        Integer id_producto = json.isNull("id")?null:json.getInt("id");
+        String tipo = json.isNull("tipo")?null:json.getString("tipo");
+        String tipoPlato = json.isNull("tipoplato")?null:json.getString("tipoplato");
         return new Productos(id_manager,id_producto,nombre,descripcion,tipo,tipoPlato,precio);
     }
 }

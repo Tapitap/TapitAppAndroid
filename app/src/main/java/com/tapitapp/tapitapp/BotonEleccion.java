@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.tapitapp.tapitapp.model.Productos;
 import com.tapitapp.tapitapp.repository.ProductosRepository;
@@ -25,8 +28,6 @@ public class BotonEleccion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boton_eleccion);
 
-
-
         init();
 
 
@@ -41,6 +42,13 @@ public class BotonEleccion extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this ));
         recyclerView.setAdapter(ListAdapter);
+        ListAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),DetallesActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

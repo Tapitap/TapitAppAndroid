@@ -16,11 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
+                          implements View.OnClickListener {
     private List<String> nombres;
-    private List<Productos> productos;
+    private List<Productos>productos;
     private LayoutInflater inflater;
     private Context context;
+    private View.OnClickListener listener;
 
     public ListAdapter(List<String> nombres, List<Productos> productos, Context context) {
         this.inflater=LayoutInflater.from(context);
@@ -34,6 +36,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view =inflater.inflate(R.layout.lista_elementos,null);
+        view.setOnClickListener(this);
         return  new ListAdapter.ViewHolder(view);
 
     }
@@ -47,6 +50,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         nombres=items;
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener!= null){
+            listener.onClick(view);
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView img;
         TextView nombre,descripcion,precio;
@@ -55,7 +69,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             super(itemView);
            img=itemView.findViewById(R.id.imgElemento);
            nombre=itemView.findViewById(R.id.txtTituloPlato);
-           descripcion=itemView.findViewById(R.id.txtDescripcion);
+           //descripcion=itemView.findViewById(R.id.txtDescripcion);
            precio=itemView.findViewById(R.id.txtPrecio);
         }
 
@@ -75,4 +89,3 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             }
         }
     }
-}

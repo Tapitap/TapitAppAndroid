@@ -19,25 +19,28 @@ import java.util.stream.Collectors;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
                           implements View.OnClickListener {
     private List<String> nombres;
-    private List<Productos>productos;
+    private List<Productos> productos;
     private LayoutInflater inflater;
     private Context context;
     private View.OnClickListener listener;
 
     public ListAdapter(List<String> nombres, List<Productos> productos, Context context) {
-        this.inflater=LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
         this.nombres = nombres;
         this.productos = productos;
         this.context = context;
     }
-    @Override
-    public int getItemCount(){return nombres.size(); }
 
     @Override
-    public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view =inflater.inflate(R.layout.lista_elementos,null);
+    public int getItemCount() {
+        return nombres.size();
+    }
+
+    @Override
+    public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.lista_elementos, null);
         view.setOnClickListener(this);
-        return  new ListAdapter.ViewHolder(view);
+        return new ListAdapter.ViewHolder(view);
 
     }
 
@@ -46,46 +49,47 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         holder.bindData(nombres.get(position));
     }
 
-    public void setItems(List<String>items){
-        nombres=items;
+    public void setItems(List<String> items) {
+        nombres = items;
     }
 
-    public void setOnClickListener(View.OnClickListener listener){
-        this.listener=listener;
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
     public void onClick(View view) {
-        if(listener!= null){
+        if (listener != null) {
             listener.onClick(view);
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView nombre,descripcion,precio;
+        TextView nombre, descripcion, precio;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView) {
             super(itemView);
-           img=itemView.findViewById(R.id.imgElemento);
-           nombre=itemView.findViewById(R.id.txtTituloPlato);
-           //descripcion=itemView.findViewById(R.id.txtDescripcion);
-           precio=itemView.findViewById(R.id.txtPrecio);
+            img = itemView.findViewById(R.id.imgElemento);
+            nombre = itemView.findViewById(R.id.txtTituloPlato);
+            descripcion=itemView.findViewById(R.id.txtDescripcion);
+            precio = itemView.findViewById(R.id.txtPrecio);
         }
 
-        void bindData(final String item){
+        void bindData(final String item) {
             List<Productos> prod = new ArrayList<>(productos.stream().filter(x -> x.getNombre().equals(item)).collect(Collectors.toList()));
             nombre.setText(item);
-            if(prod.get(0).getTipo().equals("comida")) {
+            if (prod.get(0).getTipo().equals("comida")) {
                 String descrip = "";
                 for (Productos p : prod) {
                     descrip += p.getTipoPlato() + ": " + p.getPrecio() + "€ ";
                 }
                 descripcion.setText(descrip);
-            }else{
+            } else {
                 precio.setVisibility(View.VISIBLE);
-                precio.setText(prod.get(0).getPrecio().toString()+"€");
+                precio.setText(prod.get(0).getPrecio().toString() + "€");
                 descripcion.setVisibility(View.INVISIBLE);
             }
         }
     }
+}

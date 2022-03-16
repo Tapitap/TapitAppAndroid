@@ -23,6 +23,7 @@ public class BotonEleccion extends AppCompatActivity {
     List<String> nombres;
     List<Productos> productos;
     String tipo;
+    Integer id_manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

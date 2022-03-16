@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,20 +34,24 @@ public class BotonEleccion extends AppCompatActivity {
         setContentView(R.layout.activity_boton_eleccion);
 
         init();
-
+        guardarProducto();
 
     }
     public void init(){
-        tipo=getIntent().getStringExtra("tipo");
+
         SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-        id_manager=preferences.getInt("id_manager", 1);
+
+        tipo=getIntent().getStringExtra("tipo");
+        id_manager=preferences.getInt("id_manager",1);
         productos = repository.GetProductoByTipo(id_manager,tipo);
         nombres = productos.stream().map(x->x.getNombre()).distinct().collect(Collectors.toList());
+
         ListAdapter ListAdapter = new ListAdapter(nombres, productos,this);
         RecyclerView recyclerView=findViewById(R.id.listProduct);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this ));
         recyclerView.setAdapter(ListAdapter);
+
         ListAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,5 +62,12 @@ public class BotonEleccion extends AppCompatActivity {
 
 
     }
+    private void guardarProducto(){
+        SharedPreferences preferences=getSharedPreferences("Productos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor= preferences.edit();
 
+        editor.putString("Nombre",nombres.get(0));
+
+        editor.commit();
+    }
 }

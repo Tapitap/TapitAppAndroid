@@ -23,7 +23,8 @@ public class DetallesActivity extends AppCompatActivity {
         btnMenos=(Button)findViewById(R.id.btnMenos);
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
         txtName=(TextView)findViewById(R.id.txtName) ;
-
+        SharedPreferences preferences=getSharedPreferences("Productos", Context.MODE_PRIVATE);
+        txtName.setText(preferences.getString("Nombre","no Extiste"));
         btnMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

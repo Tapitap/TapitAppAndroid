@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +15,7 @@ import com.tapitapp.tapitapp.model.Productos;
 import com.tapitapp.tapitapp.repository.ProductosRepository;
 import com.tapitapp.tapitapp.util.ListAdapter;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,8 +38,9 @@ public class BotonEleccion extends AppCompatActivity {
     }
     public void init(){
         tipo=getIntent().getStringExtra("tipo");
-
-        productos = repository.GetProductoByTipo(1,tipo);
+        SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+        id_manager=preferences.getInt("id_manager", 1);
+        productos = repository.GetProductoByTipo(id_manager,tipo);
         nombres = productos.stream().map(x->x.getNombre()).distinct().collect(Collectors.toList());
         ListAdapter ListAdapter = new ListAdapter(nombres, productos,this);
         RecyclerView recyclerView=findViewById(R.id.listProduct);
@@ -53,4 +57,5 @@ public class BotonEleccion extends AppCompatActivity {
 
 
     }
+
 }

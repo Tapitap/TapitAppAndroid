@@ -2,6 +2,8 @@ package com.tapitapp.tapitapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 public class DetallesActivity extends AppCompatActivity {
 
     Button btnMas,btnMenos;
-    TextView txtCantidad;
+    TextView txtCantidad,txtName;
     Integer valor=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,7 @@ public class DetallesActivity extends AppCompatActivity {
         btnMas=(Button) findViewById(R.id.btnMas);
         btnMenos=(Button)findViewById(R.id.btnMenos);
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
-
+        txtName=(TextView)findViewById(R.id.txtName) ;
 
         btnMas.setOnClickListener(new View.OnClickListener() {
             @Override

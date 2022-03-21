@@ -24,17 +24,16 @@ import java.util.stream.Collectors;
 public class BotonEleccion extends AppCompatActivity {
 
     private ProductosRepository repository = new ProductosRepository();
-    List<String> nombres;
     List<Productos> productos;
     String tipo;
     Integer id_manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boton_eleccion);
 
         init();
-        guardarProducto();
 
     }
     public void init(){
@@ -44,30 +43,11 @@ public class BotonEleccion extends AppCompatActivity {
         tipo=getIntent().getStringExtra("tipo");
         id_manager=preferences.getInt("id_manager",1);
         productos = repository.GetProductoByTipo(id_manager,tipo);
-        nombres = productos.stream().map(x->x.getNombre()).distinct().collect(Collectors.toList());
 
-        ListAdapter ListAdapter = new ListAdapter(nombres, productos,this);
+        ListAdapter ListAdapter = new ListAdapter(productos,this);
         RecyclerView recyclerView=findViewById(R.id.listProduct);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this ));
         recyclerView.setAdapter(ListAdapter);
-
-        ListAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),DetallesActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-    }
-    private void guardarProducto(){
-        SharedPreferences preferences=getSharedPreferences("Productos", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor= preferences.edit();
-
-        editor.putString("Nombre",nombres.get(0));
-
-        editor.commit();
     }
 }

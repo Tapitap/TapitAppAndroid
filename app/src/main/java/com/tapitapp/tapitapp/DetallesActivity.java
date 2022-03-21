@@ -22,9 +22,9 @@ public class DetallesActivity extends AppCompatActivity {
         btnMas=(Button) findViewById(R.id.btnMas);
         btnMenos=(Button)findViewById(R.id.btnMenos);
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
-        txtName=(TextView)findViewById(R.id.txtName) ;
-        SharedPreferences preferences=getSharedPreferences("Productos", Context.MODE_PRIVATE);
-        txtName.setText(preferences.getString("Nombre","no Extiste"));
+        txtName=(TextView)findViewById(R.id.txtName);
+        txtName.setText("LAGRIMAS DE POLLO");
+
         btnMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,11 +40,7 @@ public class DetallesActivity extends AppCompatActivity {
                     valor--;
                     txtCantidad.setText(Integer.toString(valor));
                 }
-
             }
         });
-
-
-
     }
 }

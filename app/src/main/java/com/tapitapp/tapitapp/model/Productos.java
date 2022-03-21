@@ -1,19 +1,26 @@
 package com.tapitapp.tapitapp.model;
 
+import java.util.List;
+
 public class Productos {
-    private Integer idManager,idProducto;
-    private String nombre ,descripcion,tipo,tipoPlato;
-    private Double precio;
+    private Integer id,idManager;
+    private String nombre ,descripcion,tipo;
+    private List<Precios> precios;
+    private boolean oferta;
 
 
-    public Productos(Integer idManager, Integer idProducto, String nombre, String descripcion, String tipo, String tipoPlato, Double precio) {
+    public Productos(Integer id, Integer idManager, String nombre, String descripcion, String tipo, List<Precios> precios, boolean oferta) {
+        this.id = id;
         this.idManager = idManager;
-        this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
-        this.tipoPlato = tipoPlato;
-        this.precio = precio;
+        this.precios = precios;
+        this.oferta = oferta;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Integer getIdManager() {
@@ -32,12 +39,14 @@ public class Productos {
         return tipo;
     }
 
-    public String getTipoPlato() {
-        return tipoPlato;
+    public List<Precios> getPrecios() {return precios;}
+
+    public boolean getOferta() {
+        return oferta;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setIdManager(Integer idManager) {
@@ -56,19 +65,9 @@ public class Productos {
         this.tipo = tipo;
     }
 
-    public void setTipoPlato(String tipoPlato) {
-        this.tipoPlato = tipoPlato;
-    }
+    public void setPrecios(List<Precios> precios){this.precios = precios;}
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public Integer getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setOferta(boolean oferta) {
+        this.oferta = oferta;
     }
 }

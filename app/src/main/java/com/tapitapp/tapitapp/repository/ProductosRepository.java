@@ -20,7 +20,7 @@ public class ProductosRepository {
     //---------METODOS PUBLICOS---------//
 
     public  List<Productos> GetProductoByTipo(Integer idManager, String tipo){
-        List<Productos>productos = new ArrayList<Productos>();
+        List<Productos>productos = new ArrayList<>();
 
         ConexionGET conexionGET = new ConexionGET();
         try{
@@ -35,7 +35,6 @@ public class ProductosRepository {
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject object = array.getJSONObject(i);
                         Productos producto = parseJSONToProducto(object);
-                        producto.setPrecios(getPreciosByIdProducto(producto.getId()));
                         productos.add(producto);
                     }
                     break;
@@ -62,7 +61,6 @@ public class ProductosRepository {
             switch (estado) {
                 case "1":
                     res = parseJSONToProducto(json.getJSONObject("Poducto"));
-                    res.setPrecios(getPreciosByIdProducto(res.getId()));
                 case "-1":
                     throw new Exception(json.getString("mensaje"));
             }
@@ -74,31 +72,6 @@ public class ProductosRepository {
     }
 
     //---------METODOS AUXILIARES---------//
-
-    private List<Precios> getPreciosByIdProducto(Integer id){
-        List<Precios> res = new ArrayList<>();
-        ConexionGET conexionGET = new ConexionGET();
-        try {
-            String result = conexionGET.execute(URL + "getPreciosById.php?id_producto=" + id).get();
-            JSONObject json = new JSONObject(result);
-            String estado = json.getString("estado");
-            switch (estado){
-                case "1":
-                    JSONArray array = json.getJSONArray("Precios");
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject object = array.getJSONObject(i);
-                        Precios precios = parseJSONToPrecio(object) ;
-                        res.add(precios);
-                    }
-                    break;
-                case "-1":
-                    throw new Exception(json.getString("mensaje"));
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return res;
-    }
 
     private Image getIcoById(Integer id){
         Image res = null;
@@ -131,8 +104,15 @@ public class ProductosRepository {
         String descripcion = json.isNull("descripcion")?null:json.getString("descripcion");
         Integer id_manager = json.isNull("id_manager")?null:json.getInt("id_manager");
         String tipo = json.isNull("tipo")?null:json.getString("tipo");
-        boolean oferta = json.isNull("oferta")?false:json.getString("oferta").equals("0")?false:true;
-        return new Productos(id,id_manager,nombre,descripcion,tipo,null,oferta);
+        boolean oferta = json.isNull("oferta") || json.getString("oferta").equals("0") ? false : true;
+        List<Precios> precios = new ArrayList<>();
+        JSONArray array = json.getJSONArray("precios");
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject object = array.getJSONObject(i);
+            Precios precio = parseJSONToPrecio(object) ;
+            precios.add(precio);
+        }
+        return new Productos(id,id_manager,nombre,descripcion,tipo,precios,oferta);
     }
 
     private Precios parseJSONToPrecio(JSONObject json) throws JSONException{

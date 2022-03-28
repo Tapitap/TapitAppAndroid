@@ -9,11 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.tapitapp.tapitapp.model.Productos;
+import com.tapitapp.tapitapp.repository.ProductosRepository;
+
 public class DetallesActivity extends AppCompatActivity {
 
     Button btnMas,btnMenos;
     TextView txtCantidad,txtName;
-    Integer valor=1;
+    Integer valor=1,id=0;
+    Productos producto;
+    private ProductosRepository repository = new ProductosRepository();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +29,13 @@ public class DetallesActivity extends AppCompatActivity {
         btnMenos=(Button)findViewById(R.id.btnMenos);
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
         txtName=(TextView)findViewById(R.id.txtName);
-        txtName.setText("LAGRIMAS DE POLLO");
+
+        //traer productos
+        id=getIntent().getIntExtra("id",0);
+
+        producto=repository.getProductoById(id);
+
+        txtName.setText(producto.getNombre().toString());
 
         btnMas.setOnClickListener(new View.OnClickListener() {
             @Override

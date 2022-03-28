@@ -60,7 +60,7 @@ public class ProductosRepository {
 
             switch (estado) {
                 case "1":
-                    res = parseJSONToProducto(json.getJSONObject("Poducto"));
+                    res = parseJSONToProducto(json.getJSONObject("Producto"));
                 case "-1":
                     throw new Exception(json.getString("mensaje"));
             }

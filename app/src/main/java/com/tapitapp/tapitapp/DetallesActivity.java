@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tapitapp.tapitapp.model.Productos;
@@ -15,6 +16,7 @@ import com.tapitapp.tapitapp.repository.ProductosRepository;
 public class DetallesActivity extends AppCompatActivity {
 
     Button btnMas,btnMenos;
+    ImageView img;
     TextView txtCantidad,txtName;
     Integer valor=1,id=0;
     Productos producto;
@@ -29,11 +31,13 @@ public class DetallesActivity extends AppCompatActivity {
         btnMenos=(Button)findViewById(R.id.btnMenos);
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
         txtName=(TextView)findViewById(R.id.txtName);
+        img=(ImageView)findViewById(R.id.imageViewDescricipcion);
 
         //traer productos
         id=getIntent().getIntExtra("id",0);
 
         producto=repository.getProductoById(id);
+        img.setImageBitmap(repository.getImgById(id));
 
         txtName.setText(producto.getNombre().toString());
 

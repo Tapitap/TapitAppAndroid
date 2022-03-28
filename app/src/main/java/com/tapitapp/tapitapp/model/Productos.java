@@ -1,5 +1,7 @@
 package com.tapitapp.tapitapp.model;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 public class Productos {
@@ -7,6 +9,7 @@ public class Productos {
     private String nombre ,descripcion,tipo;
     private List<Precios> precios;
     private boolean oferta;
+    private Bitmap ico;
 
 
     public Productos(Integer id, Integer idManager, String nombre, String descripcion, String tipo, List<Precios> precios, boolean oferta) {
@@ -45,6 +48,8 @@ public class Productos {
         return oferta;
     }
 
+    public Bitmap getIco(){ return ico; }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -70,4 +75,6 @@ public class Productos {
     public void setOferta(boolean oferta) {
         this.oferta = oferta;
     }
+
+    public void setIco(Bitmap ico){this.ico = ico;}
 }

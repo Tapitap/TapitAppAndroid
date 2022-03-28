@@ -1,21 +1,25 @@
 package com.tapitapp.tapitapp.repository;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 
 import com.tapitapp.tapitapp.model.Precios;
 import com.tapitapp.tapitapp.model.Productos;
 import com.tapitapp.tapitapp.util.ConexionGET;
+import com.tapitapp.tapitapp.util.ConexionGETimg;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductosRepository {
 
-    private String URL = "http://tapitapp.orgfree.com/servicioPHP/Productos/";
+    private String Url = "http://tapitapp.orgfree.com/servicioPHP/Productos/";
 
     //---------METODOS PUBLICOS---------//
 
@@ -24,7 +28,7 @@ public class ProductosRepository {
 
         ConexionGET conexionGET = new ConexionGET();
         try{
-            String result = conexionGET.execute(URL + "getByTipo.php?id_manager=" + idManager.toString() + "&tipo="+tipo).get();
+            String result = conexionGET.execute(Url + "getByTipo.php?id_manager=" + idManager.toString() + "&tipo="+tipo).get();
             JSONObject json = new JSONObject(result);
 
             String estado = json.getString("estado");
@@ -35,6 +39,7 @@ public class ProductosRepository {
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject object = array.getJSONObject(i);
                         Productos producto = parseJSONToProducto(object);
+                        producto.setIco(getIcoById(producto.getId()));
                         productos.add(producto);
                     }
                     break;
@@ -53,7 +58,7 @@ public class ProductosRepository {
 
         ConexionGET conexionGET = new ConexionGET();
         try {
-            String result = conexionGET.execute(URL + "getById.php?id=" + id).get();
+            String result = conexionGET.execute(Url + "getById.php?id=" + id).get();
             JSONObject json = new JSONObject(result);
 
             String estado = json.getString("estado");
@@ -71,13 +76,11 @@ public class ProductosRepository {
         return res;
     }
 
-    //---------METODOS AUXILIARES---------//
-
-    private Image getIcoById(Integer id){
-        Image res = null;
-        ConexionGET conexionGET = new ConexionGET();
+    public Bitmap getImgById(Integer id){
+        Bitmap res = null;
+        ConexionGETimg conexionGETimg = new ConexionGETimg();
         try {
-            String result = conexionGET.execute(URL + "getIcoById.php?id=" + id).get();
+            res = conexionGETimg.execute(Url + "getImgById.php?id=" + id).get();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -85,11 +88,13 @@ public class ProductosRepository {
         return res;
     }
 
-    private Image getImgById(Integer id){
-        Image res = null;
-        ConexionGET conexionGET = new ConexionGET();
+    //---------METODOS AUXILIARES---------//
+
+    private Bitmap getIcoById(Integer id){
+        Bitmap res = null;
+        ConexionGETimg conexionGETimg = new ConexionGETimg();
         try {
-            String result = conexionGET.execute(URL + "getImgById.php?id=" + id).get();
+            res = conexionGETimg.execute(Url + "getIcoById.php?id=" + id).get();
 
         }catch (Exception e){
             e.printStackTrace();

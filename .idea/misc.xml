@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Alfonso/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/layout/activity_detalles.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Alfonso/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/layout/lista_elementos.xml" value="0.5" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.10104166666666667" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitApp/app/src/main/res/drawable/border_button.xml" value="0.240625" />
@@ -14,7 +15,7 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/drawable/esquinas_redondasbutton.xml" value="0.240625" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/layout/activity_boton_eleccion.xml" value="0.1" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/layout/activity_detalles.xml" value="0.33" />
-        <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/layout/lista_elementos.xml" value="0.5" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/TapitAppAndroid/app/src/main/res/layout/lista_elementos.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

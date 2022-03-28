@@ -59,7 +59,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             super(itemView);
             img = itemView.findViewById(R.id.imgElemento);
             nombre = itemView.findViewById(R.id.txtTituloPlato);
-            descripcion=itemView.findViewById(R.id.txtDescripcion);
+            //descripcion=itemView.findViewById(R.id.txtDescripcion);
             precio = itemView.findViewById(R.id.txtprecio);
             btnDetalles=itemView.findViewById(R.id.btnDetalles);
 
@@ -67,6 +67,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
         void bindData(final Productos item) {
             nombre.setText(item.getNombre());
+            if (item.getIco() == null) {
+                img.setImageResource(R.drawable.ico_default);
+            } else {
+                img.setImageBitmap(item.getIco());
+            }
             if (item.getTipo().equals("comida")) {
                 String descrip = "";
                 for (Precios p : item.getPrecios()) {
@@ -74,9 +79,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 }
                 precio.setText(descrip);
             } else {
-                precio.setVisibility(View.VISIBLE);
-                precio.setText(item.getPrecios().get(0).getCuantia().toString() + "€");
-                descripcion.setVisibility(View.INVISIBLE);
+                //precio.setVisibility(View.VISIBLE);
+                precio.setText("Precio: "+item.getPrecios().get(0).getCuantia().toString() + "€");
+                //descripcion.setVisibility(View.INVISIBLE);
             }
 
             btnDetalles.setOnClickListener(new View.OnClickListener() {

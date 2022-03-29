@@ -17,7 +17,7 @@ public class DetallesActivity extends AppCompatActivity {
 
     Button btnMas,btnMenos;
     ImageView img;
-    TextView txtCantidad,txtName;
+    TextView txtCantidad,txtName,txtDescripcion;
     Integer valor=1,id=0;
     Productos producto;
     private ProductosRepository repository = new ProductosRepository();
@@ -30,15 +30,17 @@ public class DetallesActivity extends AppCompatActivity {
         btnMas=(Button) findViewById(R.id.btnMas);
         btnMenos=(Button)findViewById(R.id.btnMenos);
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
+        txtDescripcion=(TextView) findViewById(R.id.txtDescripcion);
         txtName=(TextView)findViewById(R.id.txtName);
         img=(ImageView)findViewById(R.id.imageViewDescricipcion);
 
-        //traer productos
+        //obtener productos mediante id
         id=getIntent().getIntExtra("id",0);
-
+        //obtener imagenes productos mediante id
         producto=repository.getProductoById(id);
         img.setImageBitmap(repository.getImgById(id));
 
+        txtDescripcion.setText(producto.getDescripcion());
         txtName.setText(producto.getNombre().toString());
 
         btnMas.setOnClickListener(new View.OnClickListener() {

@@ -12,9 +12,7 @@
         android:id="@+id/linearLayout6"
         android:layout_width="392dp"
         android:layout_height="250dp"
-        android:layout_marginTop="32dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,18 +21,93 @@
             android:layout_width="300dp"
             android:layout_height="228dp"
             android:layout_gravity="center"
+            android:layout_marginTop="4dp"
             android:background="@drawable/esquinas_redondasbutton"
             app:srcCompat="@drawable/presentacion_42" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pilo"
+            android:text="¿Que quieres pedir?"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxTapa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/pilo"
+                android:minHeight="48dp"
+                android:shadowColor="@color/gris"
+                android:text="Tapa"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="#9C27B0"
+                android:textColorLink="@color/white"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/pilo"
+                android:minHeight="48dp"
+                android:shadowColor="@color/gris"
+                android:text="Media"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="#9C27B0"
+                android:textColorLink="@color/white"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxEntera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/pilo"
+                android:minHeight="48dp"
+                android:shadowColor="@color/gris"
+                android:text="Racion"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/black"
+                android:textColorHint="#9C27B0"
+                android:textColorLink="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="320dp"
         android:layout_height="160dp"
+        android:layout_marginStart="32dp"
         android:background="@drawable/esquinas_redondas"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
@@ -57,104 +130,19 @@
             android:fontFamily="@font/pilo"
             android:paddingLeft="8dp"
             android:paddingTop="16dp"
-            android:text="Descripcion"
+            android:text="Plato compuesto por cebollas, calabacines, tomates y pimientos cocinados a fuego lento con aceite de oliva."
             android:textAlignment="textStart"
             android:textSize="16sp" />
-
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pilo"
-            android:text="¿Que quieres pedir?"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/checkBoxTapa"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:fontFamily="@font/pilo"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:shadowColor="@color/gris"
-                android:text="Tapa"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textColorHint="#9C27B0"
-                android:textColorLink="@color/white"
-                android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <CheckBox
-                android:id="@+id/checkBoxMedia"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:fontFamily="@font/pilo"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:shadowColor="@color/gris"
-                android:text="Media"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textColorHint="#9C27B0"
-                android:textColorLink="@color/white"
-                android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <CheckBox
-                android:id="@+id/checkBoxEntera"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/pilo"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:shadowColor="@color/gris"
-                android:text="Racion"
-                android:textAlignment="textStart"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/black"
-                android:textColorHint="#9C27B0"
-                android:textColorLink="@color/white"
-                android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout8"
+        android:id="@+id/linearLayout7"
         android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="73dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintStart_toEndOf="@+id/linearLayout6">
 
         <Button
             android:id="@+id/btnMas"
@@ -163,11 +151,9 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@drawable/border_button"
-            android:minHeight="48dp"
             android:text="+"
             android:textColor="@color/white"
-            android:textSize="34sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textSize="34sp" />
 
         <TextView
             android:id="@+id/txtCantidad"
@@ -197,8 +183,7 @@
             android:enabled="true"
             android:text="-"
             android:textColor="@color/white"
-            android:textSize="34sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textSize="34sp" />
 
     </LinearLayout>
 
@@ -208,8 +193,7 @@
         android:layout_height="140dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/linearLayout3">
 
         <Button
             android:id="@+id/btnAñadir"

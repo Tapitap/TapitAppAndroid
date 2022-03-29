@@ -146,21 +146,21 @@
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <Button
             android:id="@+id/btnMas"
             android:layout_width="10dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:background="@drawable/border_button"
             android:minHeight="48dp"
@@ -174,7 +174,7 @@
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
             android:contextClickable="false"
@@ -191,7 +191,7 @@
             android:id="@+id/btnMenos"
             android:layout_width="15dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:background="@drawable/border_button"
             android:enabled="true"
@@ -204,19 +204,25 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="413dp"
-        android:layout_height="140dp"
-        android:orientation="vertical"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <Button
             android:id="@+id/btnAñadir"
-            android:layout_width="320dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/esquinas_redondasbutton"
             android:fontFamily="@font/pilo"
             android:text="Añadir"
@@ -225,7 +231,7 @@
 
         <Button
             android:id="@+id/btnComanda"
-            android:layout_width="320dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"

@@ -23,8 +23,7 @@
             android:layout_width="300dp"
             android:layout_height="228dp"
             android:layout_gravity="center"
-            android:background="@drawable/esquinas_redondasbutton"
-            app:srcCompat="@drawable/presentacion_42" />
+            android:background="@drawable/esquinas_redondasbutton" />
     </LinearLayout>
 
     <LinearLayout

@@ -16,9 +16,7 @@ import com.tapitapp.tapitapp.R;
 import com.tapitapp.tapitapp.model.Precios;
 import com.tapitapp.tapitapp.model.Productos;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     private List<Productos> productos;
@@ -73,11 +71,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 img.setImageBitmap(item.getIco());
             }
             if (item.getTipo().equals("comida")) {
-                String descrip = "";
+                String precio2 = "";
                 for (Precios p : item.getPrecios()) {
-                    descrip += p.getTipo() + ": " + p.getCuantia() + "€ ";
+                    precio2 += p.getTipo() + ": " + p.getCuantia() + "€ ";
                 }
-                precio.setText(descrip);
+                precio.setText(precio2);
             } else {
                 //precio.setVisibility(View.VISIBLE);
                 precio.setText("Precio: "+item.getPrecios().get(0).getCuantia().toString() + "€");
@@ -88,7 +86,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context.getApplicationContext(), DetallesActivity.class);
+
                     intent.putExtra("id",item.getId());
+
                     context.startActivity(intent);
 
 

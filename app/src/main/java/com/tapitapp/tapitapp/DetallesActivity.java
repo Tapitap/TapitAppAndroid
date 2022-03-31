@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
 import com.tapitapp.tapitapp.db.utilidades;
+import com.tapitapp.tapitapp.model.Precios;
 import com.tapitapp.tapitapp.model.Productos;
 import com.tapitapp.tapitapp.repository.ProductosRepository;
 
@@ -25,6 +27,7 @@ public class DetallesActivity extends AppCompatActivity {
     Integer valor=1,id=0;
     CheckBox chTapa,chMedia,chRacion;
     Productos producto;
+    LinearLayout linear1;
     private ProductosRepository repository = new ProductosRepository();
 
     @Override
@@ -45,6 +48,8 @@ public class DetallesActivity extends AppCompatActivity {
         chMedia=(CheckBox)findViewById(R.id.checkBoxMedia);
         chRacion=(CheckBox)findViewById(R.id.checkBoxEntera);
 
+        linear1=(LinearLayout)findViewById(R.id.LinearTamaño) ;
+
         //obtener productos mediante id
         id=getIntent().getIntExtra("id",0);
         //obtener imagenes productos mediante id
@@ -58,12 +63,27 @@ public class DetallesActivity extends AppCompatActivity {
         conexionSQLiteHelper conexionSQLiteHelper = new conexionSQLiteHelper(this,"Tapitapp.db",null,1);
         SQLiteDatabase db = conexionSQLiteHelper.getWritableDatabase();
 
+        validacion();
+        if(chTapa.isChecked()){
+            chMedia.setChecked(true);
+            chRacion.setChecked(true);
+
+        }else if(chMedia.isChecked()){
+            chTapa.setChecked(false);
+            chRacion.setChecked(false);
+
+        }else if(chRacion.isChecked()){
+            chMedia.setChecked(false);
+            chTapa.setChecked(false);
+
+        }
 
         btnAñadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 RegistrarLinea();
-                //validar();
+
             }
         });
 
@@ -88,29 +108,47 @@ public class DetallesActivity extends AppCompatActivity {
         });
 
     }
+
+    private void validacion(){
+        if(producto.getTipo().equals("bebida")){
+            linear1.setVisibility(LinearLayout.INVISIBLE);
+        }else if(producto.getTipo().equals("combinado")){
+            linear1.setVisibility(LinearLayout.INVISIBLE);
+        }else if(producto.getTipo().equals("postre")){
+            linear1.setVisibility(LinearLayout.INVISIBLE);
+        }
+    }
     private void RegistrarLinea(){
+        Double precio=0.0;
+        Integer cantidad =  Integer.parseInt(txtCantidad.getText().toString());
         conexionSQLiteHelper conexionSQLiteHelper = new conexionSQLiteHelper(this,"Tapitapp.db",null,1);
         SQLiteDatabase db= conexionSQLiteHelper.getWritableDatabase();
+
+
+
+        if(chTapa.isChecked()==true){
+            precio= producto.getPrecios().get(0).getCuantia();
+        }else if(chMedia.isChecked()==true){
+            precio=producto.getPrecios().get(1).getCuantia();
+        }else if(chRacion.isChecked()==true){
+            precio=producto.getPrecios().get(2).getCuantia();
+        }else{
+            precio= producto.getPrecios().get(0).getCuantia();
+        }
+
         ContentValues valores = new ContentValues();
         valores.put(utilidades.IDProducto,producto.getId());
-        valores.put(utilidades.IDComanda,1);
-        valores.put(utilidades.IDPrecio,7.5);
+        //valores.put(utilidades.IDComanda,1);
+
+        valores.put(utilidades.IDPrecio,precio);
         valores.put(utilidades.Cantidad,txtCantidad.getText().toString());
+        valores.put(utilidades.total,precio*cantidad);
 
 
         Long elemento=db.insert(utilidades.TABLA_LINEA,utilidades.IDLinea,valores);
-        Toast.makeText(getApplicationContext(), "Añadido el plato ", Toast.LENGTH_SHORT).show();
-    }
-    private void validar(){
-        String cad="selecccionado: \n";
-        if(chTapa.isChecked()==true){
-            cad+="Tapa";
-        }else if(chMedia.isChecked()==true){
-            cad+="Media";
-        }else if(chRacion.isChecked()==true){
-            cad+="Racion";
-        }
 
-        Toast.makeText(getApplicationContext(), cad, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Añadido: "+ producto.getNombre().toString(), Toast.LENGTH_SHORT).show();
+
     }
+
 }

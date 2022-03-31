@@ -147,7 +147,7 @@ public class DetallesActivity extends AppCompatActivity {
         valores.put(utilidades.IDProducto,producto.getId());
         //valores.put(utilidades.IDComanda,1);
 
-        valores.put(utilidades.IDPrecio,precio);
+        valores.put(utilidades.Precio,precio);
         valores.put(utilidades.Cantidad,txtCantidad.getText().toString());
         valores.put(utilidades.total,precio*cantidad);
 

@@ -64,31 +64,19 @@ public class DetallesActivity extends AppCompatActivity {
         SQLiteDatabase db = conexionSQLiteHelper.getWritableDatabase();
 
         validacion();
-        if(chTapa.isChecked()){
-            chMedia.setChecked(true);
-            chRacion.setChecked(true);
 
-        }else if(chMedia.isChecked()){
-            chTapa.setChecked(false);
-            chRacion.setChecked(false);
-
-        }else if(chRacion.isChecked()){
-            chMedia.setChecked(false);
-            chTapa.setChecked(false);
-
-        }
+        //------------------Eventos-------------------
 
         btnAñadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                RegistrarLinea();
-
+                if(chTapa.isChecked() || chMedia.isChecked() || chRacion.isChecked()){
+                    RegistrarLinea();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Selecciona un Tamaño de plato", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
-
         btnMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +84,6 @@ public class DetallesActivity extends AppCompatActivity {
                 txtCantidad.setText(Integer.toString(valor));
             }
         });
-
         btnMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +93,27 @@ public class DetallesActivity extends AppCompatActivity {
                 }
             }
         });
-
+        chTapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chMedia.setChecked(false);
+                chRacion.setChecked(false);
+            }
+        });
+        chMedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chTapa.setChecked(false);
+                chRacion.setChecked(false);
+            }
+        });
+        chRacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chMedia.setChecked(false);
+                chTapa.setChecked(false);
+            }
+        });
     }
 
     private void validacion(){
@@ -143,7 +150,6 @@ public class DetallesActivity extends AppCompatActivity {
         valores.put(utilidades.IDPrecio,precio);
         valores.put(utilidades.Cantidad,txtCantidad.getText().toString());
         valores.put(utilidades.total,precio*cantidad);
-
 
         Long elemento=db.insert(utilidades.TABLA_LINEA,utilidades.IDLinea,valores);
 

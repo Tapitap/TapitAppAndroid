@@ -3,6 +3,7 @@ package com.tapitapp.tapitapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -35,10 +36,12 @@ public class DetallesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles);
 
+
         btnMas=(Button) findViewById(R.id.btnMas);
         btnMenos=(Button)findViewById(R.id.btnMenos);
         btnVer=(Button) findViewById(R.id.btnComanda);
         btnAñadir=(Button)findViewById(R.id.btnAñadir);
+
         txtCantidad=(TextView) findViewById(R.id.txtCantidad);
         txtDescripcion=(TextView) findViewById(R.id.txtDescripcion);
         txtName=(TextView)findViewById(R.id.txtName);
@@ -52,6 +55,7 @@ public class DetallesActivity extends AppCompatActivity {
 
         //obtener productos mediante id
         id=getIntent().getIntExtra("id",0);
+
         //obtener imagenes productos mediante id
         producto=repository.getProductoById(id);
         img.setImageBitmap(repository.getImgById(id));
@@ -67,10 +71,19 @@ public class DetallesActivity extends AppCompatActivity {
 
         //------------------Eventos-------------------
 
+        btnVer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ComandaActivity.class);
+                startActivity(intent);
+            }
+        });
         btnAñadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(chTapa.isChecked() || chMedia.isChecked() || chRacion.isChecked()){
+                if(producto.getTipo().equals("bebida")||producto.getTipo().equals("postre")|| producto.getTipo().equals("combinado")){
+                    RegistrarLinea();
+                }else if(chTapa.isChecked() || chMedia.isChecked() || chRacion.isChecked()){
                     RegistrarLinea();
                 }else{
                     Toast.makeText(getApplicationContext(),"Selecciona un Tamaño de plato", Toast.LENGTH_SHORT).show();

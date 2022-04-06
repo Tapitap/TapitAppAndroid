@@ -33,7 +33,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListComanda"
-        android:layout_width="409dp"
+        android:layout_width="350dp"
         android:layout_height="596dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

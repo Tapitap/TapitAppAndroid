@@ -163,6 +163,7 @@ public class DetallesActivity extends AppCompatActivity {
         valores.put(utilidades.Precio,precio);
         valores.put(utilidades.Cantidad,txtCantidad.getText().toString());
         valores.put(utilidades.total,precio*cantidad);
+        valores.put(utilidades.Nombre,producto.getNombre().toString());
 
         Long elemento=db.insert(utilidades.TABLA_LINEA,utilidades.IDLinea,valores);
 

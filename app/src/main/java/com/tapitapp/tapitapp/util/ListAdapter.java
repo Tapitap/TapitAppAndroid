@@ -56,10 +56,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         ViewHolder(View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imgElemento);
-            nombre = itemView.findViewById(R.id.txtTituloPlato);
+            nombre = itemView.findViewById(R.id.txtNombrePlato);
             //descripcion=itemView.findViewById(R.id.txtDescripcion);
-            precio = itemView.findViewById(R.id.txtprecio);
-            btnDetalles=itemView.findViewById(R.id.btnDetalles);
+            precio = itemView.findViewById(R.id.txtCantidad2);
+            btnDetalles=itemView.findViewById(R.id.btnBorrar);
 
         }
 

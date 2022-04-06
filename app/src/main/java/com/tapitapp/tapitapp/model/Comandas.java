@@ -6,15 +6,19 @@ public class Comandas {
     private Integer id_producto;
     private Double id_precio;
     private Integer cantidad;
-    private Double Total;
+    private String nombre;
+    private String tipo;
+    private Double total;
 
 
-    public Comandas(Integer id_comanda, Integer id_producto, Double id_precio, Integer cantidad, Double total) {
+    public Comandas() {
         this.id_comanda = id_comanda;
         this.id_producto = id_producto;
         this.id_precio = id_precio;
         this.cantidad = cantidad;
-        Total = total;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.total = total;
     }
 
     public Integer getId_comanda() {
@@ -50,10 +54,26 @@ public class Comandas {
     }
 
     public Double getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(Double total) {
-        Total = total;
+        total = total;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

@@ -1,10 +1,17 @@
 package com.tapitapp.tapitapp.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.tapitapp.tapitapp.model.Comandas;
+
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.List;
 
 public class conexionSQLiteHelper extends SQLiteOpenHelper {
 
@@ -30,4 +37,6 @@ public class conexionSQLiteHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
 
     }
+
+
 }

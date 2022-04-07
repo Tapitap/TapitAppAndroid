@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
 import com.tapitapp.tapitapp.db.utilidades;
@@ -34,10 +35,12 @@ public class ComandaActivity extends AppCompatActivity {
         ListComandas=new ArrayList<>();
 
         consultar();
+
         AdapterComanda adapter = new AdapterComanda(ListComandas);
 
 
         recycler.setAdapter(adapter);
+
 
     }
 

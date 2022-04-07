@@ -1,6 +1,9 @@
 package com.tapitapp.tapitapp.db;
 
+import android.database.sqlite.SQLiteDatabase;
+
 public class utilidades {
+
 
     //constantes campos tabla
     public static final String TABLA_LINEA="linea";
@@ -19,4 +22,6 @@ public class utilidades {
             IDProducto+ " "+  "INTEGER , " +Nombre+" "+  "INTEGER, " +
             Precio+" "+  "INTEGER , "+  Cantidad+" "+  "INTEGER, " +
             total +" "+  "DOUBLE)";
+
+
 }

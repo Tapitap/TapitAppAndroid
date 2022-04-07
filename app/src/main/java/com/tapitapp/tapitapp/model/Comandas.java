@@ -53,14 +53,6 @@ public class Comandas {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        total = total;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -75,5 +67,13 @@ public class Comandas {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 }

@@ -1,17 +1,26 @@
 package com.tapitapp.tapitapp.util;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tapitapp.tapitapp.ComandaActivity;
 import com.tapitapp.tapitapp.R;
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
+import com.tapitapp.tapitapp.db.utilidades;
 import com.tapitapp.tapitapp.model.Comandas;
 
 import org.w3c.dom.Text;
@@ -23,7 +32,8 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
 
 
     ArrayList<Comandas>ListComandas;
-
+    Integer id;
+    conexionSQLiteHelper conn;
 
     public AdapterComanda(ArrayList<Comandas> listComandas) {
         ListComandas = listComandas;
@@ -39,9 +49,9 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolderDatos holder, int position) {
-        holder.txtNombre.setText(ListComandas.get(position).getNombre());
-        holder.txtCantidad.setText(ListComandas.get(position).getCantidad().toString());
-        //holder.txtTotal.setText(ListComandas.get(position).getTotal().toString());
+        holder.bindata(ListComandas.get(position));
+
+
     }
 
     @Override
@@ -52,16 +62,41 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
         TextView txtNombre,txtCantidad,txtTotal;
-        Button Borrar;
+        ImageButton Borrar;
+        ListView lw;
         public ViewHolderDatos(View itemView) {
             super(itemView);
-
+            conn=new conexionSQLiteHelper(itemView.getContext(), "Tapitapp.db",null,1);
             txtNombre=(TextView) itemView.findViewById(R.id.txtNombrePlato);
             txtCantidad=(TextView) itemView.findViewById(R.id.txtCantidad2);
             txtTotal=(TextView) itemView.findViewById(R.id.txtTotal);
-            //Borrar=(Button) itemView.findViewById(R.id.btnBorrar);
+            Borrar=(ImageButton) itemView.findViewById(R.id.ButtonDelete);
+
+        }
+
+
+        public void bindata(Comandas comandas) {
+            txtNombre.setText(comandas.getNombre());
+            txtCantidad.setText("cantidad: " + comandas.getCantidad().toString());
+            txtTotal.setText("Precio: "+ comandas.getTotal().toString());
+            Borrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SQLiteDatabase db = conn.getWritableDatabase();
+
+
+                    db.execSQL("DELETE FROM linea WHERE id="+ comandas.getId_comanda().toString());
+
+                    Toast.makeText(view.getContext(), "borrado", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            });
 
 
         }
+
     }
+
 }

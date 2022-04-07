@@ -57,7 +57,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/pilo"
+                        android:fontFamily="@font/meoowly"
                         android:text="cantidad"
                         android:textStyle="bold" />
 
@@ -66,20 +66,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/pilo"
+                        android:fontFamily="@font/meoowly"
                         android:text="Total" />
 
                     <ImageButton
-                        android:id="@+id/btnBorrar"
-                        android:layout_width="24dp"
-                        android:layout_height="44dp"
+                        android:id="@+id/ButtonDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/esquinas_rojas"
-                        android:fontFamily="@font/pilo"
-                        android:src="@drawable/ic_delete"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                        app:srcCompat="@drawable/ic_delete"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </LinearLayout>
 

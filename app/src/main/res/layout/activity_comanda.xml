@@ -33,9 +33,33 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListComanda"
-        android:layout_width="350dp"
-        android:layout_height="596dp"
+        android:layout_width="383dp"
+        android:layout_height="457dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+
+    <LinearLayout
+        android:layout_width="384dp"
+        android:layout_height="68dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ListComanda">
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/esquinas_redondasbutton"
+            android:fontFamily="@font/pilo"
+            android:gravity="center|center_vertical"
+            android:paddingTop="8dp"
+            android:text="Enviar"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

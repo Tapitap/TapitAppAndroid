@@ -46,7 +46,10 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
                 .inflate(R.layout.lista_comanda,null,false);
         return new ViewHolderDatos(view);
     }
-
+    public void updateRecyclerViewAdapter(ArrayList<Comandas>comandas) {
+        this.ListComandas = comandas;
+        notifyDataSetChanged();
+    }
     @Override
     public void onBindViewHolder(ViewHolderDatos holder, int position) {
         holder.bindata(ListComandas.get(position));
@@ -88,6 +91,8 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
                     db.execSQL("DELETE FROM linea WHERE id="+ comandas.getId_comanda().toString());
 
                     Toast.makeText(view.getContext(), "borrado", Toast.LENGTH_SHORT).show();
+                    ListComandas.remove(comandas);
+                    updateRecyclerViewAdapter(ListComandas);
 
                 }
 

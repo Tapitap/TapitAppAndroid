@@ -69,6 +69,8 @@ public class DetallesActivity extends AppCompatActivity {
 
         validacion();
 
+
+
         //------------------Eventos-------------------
 
         btnVer.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +132,17 @@ public class DetallesActivity extends AppCompatActivity {
     }
 
     private void validacion(){
-        if(producto.getTipo().equals("bebida")){
+        if(producto.getTipo().equals("comida")){
+            for(Precios p : producto.getPrecios()){
+                if(p.getTipo().equals("tapa")){
+                    chTapa.setVisibility(View.VISIBLE);
+                }else if(p.getTipo().equals("media")){
+                    chMedia.setVisibility(View.VISIBLE);
+                }else if(p.getTipo().equals("racion")){
+                    chRacion.setVisibility(View.VISIBLE);
+                }
+            }
+        }else if(producto.getTipo().equals("bebida")){
             linear1.setVisibility(LinearLayout.INVISIBLE);
         }else if(producto.getTipo().equals("combinado")){
             linear1.setVisibility(LinearLayout.INVISIBLE);

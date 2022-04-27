@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tapitapp.tapitapp.R;
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
-import com.tapitapp.tapitapp.model.Comandas;
-import com.tapitapp.tapitapp.model.Cuentas;
 import com.tapitapp.tapitapp.model.LineaCuenta;
 
 import java.util.ArrayList;
@@ -50,8 +48,8 @@ public class AdapterCuenta extends RecyclerView.Adapter<AdapterCuenta.ViewHolder
         public ViewHoldersCuentas( View itemView) {
             super(itemView);
             conn=new conexionSQLiteHelper(itemView.getContext(), "Tapitapp.db",null,2);
-            txtTotalCuenta=(TextView)itemView.findViewById(R.id.txt_Total);
-            txtTotal=(TextView)itemView.findViewById(R.id.txtTotal);
+
+            txtTotal=(TextView)itemView.findViewById(R.id.txtTotal2);
             txtNombre=(TextView)itemView.findViewById(R.id.txtNombrePlato2);
             txtCantidad=(TextView) itemView.findViewById(R.id.txtCantidad3);
         }
@@ -61,8 +59,7 @@ public class AdapterCuenta extends RecyclerView.Adapter<AdapterCuenta.ViewHolder
 
             txtNombre.setText(lineaCuenta.getNombreLinea());
             txtCantidad.setText(lineaCuenta.getCantidadLinea().toString());
-            //txtTotalCuenta.setText(lineaCuenta.getTotalCuenta().toString());
-
+            txtTotal.setText(lineaCuenta.getTotalCuenta().toString());
 
         }
     }

@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ListCuenta">
 
         <TextView
-            android:id="@+id/txt_Total"
+            android:id="@+id/txt_cuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"

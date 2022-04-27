@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
 import com.tapitapp.tapitapp.db.utilidades;
@@ -22,7 +23,7 @@ public class CuentaActivity extends AppCompatActivity {
     ArrayList<LineaCuenta> ListLineaCuentas;
     ArrayList<Comandas> ListComanda_cuentas;
     RecyclerView recycler;
-
+    TextView txtTotalCuenta;
     conexionSQLiteHelper conn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,12 @@ public class CuentaActivity extends AppCompatActivity {
 
         recycler =(RecyclerView) findViewById(R.id.ListCuenta);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
-
+        txtTotalCuenta=(TextView) findViewById(R.id.txt_cuenta);
         ListLineaCuentas=new ArrayList<>();
 
         consultarCuenta();
+        Double total = ListLineaCuentas.stream().mapToDouble(x->x.getTotalCuenta()).sum();
+        txtTotalCuenta.setText("Total: " + total.toString());
 
         AdapterCuenta adapter= new AdapterCuenta(ListLineaCuentas);
 

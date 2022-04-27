@@ -103,6 +103,7 @@
                 android:textColorHint="#9C27B0"
                 android:textColorLink="@color/white"
                 android:textSize="20sp"
+                android:visibility="invisible"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <CheckBox
@@ -120,6 +121,7 @@
                 android:textColorHint="#9C27B0"
                 android:textColorLink="@color/white"
                 android:textSize="20sp"
+                android:visibility="invisible"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <CheckBox
@@ -138,6 +140,7 @@
                 android:textColorHint="#9C27B0"
                 android:textColorLink="@color/white"
                 android:textSize="20sp"
+                android:visibility="invisible"
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 

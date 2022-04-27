@@ -64,7 +64,7 @@ public class DetallesActivity extends AppCompatActivity {
         txtName.setText(producto.getNombre().toString());
 
         //conexion SQLite
-        conexionSQLiteHelper conexionSQLiteHelper = new conexionSQLiteHelper(this,"Tapitapp.db",null,1);
+        conexionSQLiteHelper conexionSQLiteHelper = new conexionSQLiteHelper(this,"Tapitapp.db",null,utilidades.VERSION);
         SQLiteDatabase db = conexionSQLiteHelper.getWritableDatabase();
 
         validacion();
@@ -141,7 +141,7 @@ public class DetallesActivity extends AppCompatActivity {
     private void RegistrarLinea(){
         Double precio=0.0;
         Integer cantidad =  Integer.parseInt(txtCantidad.getText().toString());
-        conexionSQLiteHelper conexionSQLiteHelper = new conexionSQLiteHelper(this,"Tapitapp.db",null,1);
+        conexionSQLiteHelper conexionSQLiteHelper = new conexionSQLiteHelper(this,"Tapitapp.db",null,utilidades.VERSION);
         SQLiteDatabase db= conexionSQLiteHelper.getWritableDatabase();
 
 

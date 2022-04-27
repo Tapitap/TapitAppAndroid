@@ -18,7 +18,7 @@ public class conexionSQLiteHelper extends SQLiteOpenHelper {
 
 
 
-    public conexionSQLiteHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public conexionSQLiteHelper( Context context, String name,  SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
@@ -26,14 +26,18 @@ public class conexionSQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(utilidades.CREAR_TABLA_LINEA);
+       //sqLiteDatabase.execSQL(utilidades.CREAR_TABLA_Cuentas);
+       sqLiteDatabase.execSQL(utilidades.CREAR_TABLA_LINEACUENTA);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS t_linea ");
+        sqLiteDatabase.execSQL(utilidades.DELETE_TABLA_LINEA);
+        //sqLiteDatabase.execSQL(utilidades.DELETE_TABLA_CUENTAS);
+        sqLiteDatabase.execSQL(utilidades.DELETE_TABLA_LINEACUENTA);
 
-        //sqLiteDatabase.execSQL("DROP TABLE"+ TABLA_LINEA);
+        //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS TABLA_LINEA");
         onCreate(sqLiteDatabase);
 
     }

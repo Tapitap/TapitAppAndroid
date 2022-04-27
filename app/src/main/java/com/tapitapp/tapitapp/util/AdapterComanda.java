@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tapitapp.tapitapp.ComandaActivity;
+import com.tapitapp.tapitapp.CuentaActivity;
 import com.tapitapp.tapitapp.R;
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
 import com.tapitapp.tapitapp.db.utilidades;
 import com.tapitapp.tapitapp.model.Comandas;
+import com.tapitapp.tapitapp.model.Cuentas;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHolderDatos> {
@@ -38,7 +43,6 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
     public AdapterComanda(ArrayList<Comandas> listComandas) {
         ListComandas = listComandas;
     }
-
 
     @Override
     public ViewHolderDatos onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -66,14 +70,17 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
 
         TextView txtNombre,txtCantidad,txtTotal;
         ImageButton Borrar;
+
         ListView lw;
         public ViewHolderDatos(View itemView) {
             super(itemView);
-            conn=new conexionSQLiteHelper(itemView.getContext(), "Tapitapp.db",null,1);
+            conn=new conexionSQLiteHelper(itemView.getContext(), "Tapitapp.db",null,2);
             txtNombre=(TextView) itemView.findViewById(R.id.txtNombrePlato);
             txtCantidad=(TextView) itemView.findViewById(R.id.txtCantidad2);
             txtTotal=(TextView) itemView.findViewById(R.id.txtTotal);
             Borrar=(ImageButton) itemView.findViewById(R.id.ButtonDelete);
+
+
 
         }
 
@@ -98,6 +105,7 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
 
 
             });
+
 
 
         }

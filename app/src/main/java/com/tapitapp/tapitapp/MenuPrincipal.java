@@ -19,6 +19,8 @@ public class MenuPrincipal extends AppCompatActivity {
     Button cartaBebida;
     Button cartaPostre;
     Button cartaCombinados;
+    Button btnCuenta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class MenuPrincipal extends AppCompatActivity {
         cartaBebida=(Button)findViewById(R.id.btnBebidas);
         cartaPostre=(Button)findViewById(R.id.btnPostres);
         cartaCombinados=(Button)findViewById(R.id.btnCombinados);
+        btnCuenta=(Button)findViewById(R.id.btnCuenta);
 
 
         cerrar.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,13 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
+        btnCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CuentaActivity.class);
+                startActivity(intent);
+            }
+        });
         cartaCombinados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +90,7 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==event.KEYCODE_BACK){
-            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            AlertDialog.Builder builder=new AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog_Alert);
             builder.setMessage("¿Desea salir de TapiTapp?")
                     .setPositiveButton("si", new DialogInterface.OnClickListener() {
                         @Override

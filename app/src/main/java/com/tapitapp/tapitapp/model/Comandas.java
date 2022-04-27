@@ -1,6 +1,8 @@
 package com.tapitapp.tapitapp.model;
 
-public class Comandas {
+import android.os.Parcelable;
+
+public class Comandas  {
 
     private Integer id_comanda;
     private Integer id_producto;

@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
 import com.tapitapp.tapitapp.db.utilidades;
@@ -20,7 +24,7 @@ public class ComandaActivity extends AppCompatActivity {
 
     ArrayList<Comandas>ListComandas;
     RecyclerView recycler;
-
+    Button enviar;
     conexionSQLiteHelper conn;
 
     @Override
@@ -28,7 +32,10 @@ public class ComandaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comanda);
 
-        conn=new conexionSQLiteHelper(getApplicationContext(),"Tapitapp.db",null,1);
+        enviar=(Button)findViewById(R.id.btnEnviar);
+
+        conn=new conexionSQLiteHelper(getApplicationContext(),"Tapitapp.db",null,utilidades.VERSION);
+
         recycler =(RecyclerView) findViewById(R.id.ListComanda);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
 
@@ -41,6 +48,15 @@ public class ComandaActivity extends AppCompatActivity {
 
         recycler.setAdapter(adapter);
 
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Enviado", Toast.LENGTH_SHORT).show();
+                Insertarcomanda();
+                SQLiteDatabase db = conn.getWritableDatabase();
+                db.execSQL("DELETE FROM linea");
+            }
+        });
 
     }
 
@@ -63,5 +79,21 @@ public class ComandaActivity extends AppCompatActivity {
         }
     }
 
+    private void Insertarcomanda() {
+        SQLiteDatabase db = conn.getWritableDatabase();
 
-}
+        for (int i =0; i<ListComandas.size();i++){
+            ContentValues valores = new ContentValues();
+
+            valores.put(utilidades.NombreCuenta,ListComandas.get(i).getNombre());
+            valores.put(utilidades.CantidadCuenta,ListComandas.get(i).getCantidad());
+            valores.put(utilidades.totalCuenta,ListComandas.get(i).getTotal());
+
+
+            Long elemento=db.insert(utilidades.TABLA_LINEACUENTA,utilidades.IDLineaCuenta,valores);
+
+        }
+
+
+        }
+    }

@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
@@ -24,6 +28,7 @@ public class CuentaActivity extends AppCompatActivity {
     ArrayList<Comandas> ListComanda_cuentas;
     RecyclerView recycler;
     TextView txtTotalCuenta;
+    Button pedir,volver;
     conexionSQLiteHelper conn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,8 @@ public class CuentaActivity extends AppCompatActivity {
         recycler =(RecyclerView) findViewById(R.id.ListCuenta);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         txtTotalCuenta=(TextView) findViewById(R.id.txt_cuenta);
+        volver=(Button)findViewById(R.id.btnVolver);
+        pedir=(Button)findViewById(R.id.btnPedir);
         ListLineaCuentas=new ArrayList<>();
 
         consultarCuenta();
@@ -46,6 +53,13 @@ public class CuentaActivity extends AppCompatActivity {
 
         recycler.setAdapter(adapter);
 
+        volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),MenuPrincipal.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

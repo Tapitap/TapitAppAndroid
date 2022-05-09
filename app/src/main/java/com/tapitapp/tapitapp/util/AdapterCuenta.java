@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tapitapp.tapitapp.R;
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
+import com.tapitapp.tapitapp.model.Comandas;
+import com.tapitapp.tapitapp.model.Cuentas;
 import com.tapitapp.tapitapp.model.LineaCuenta;
 
 import java.util.ArrayList;

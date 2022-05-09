@@ -5,17 +5,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.tapitapp.tapitapp.db.conexionSQLiteHelper;
 import com.tapitapp.tapitapp.db.utilidades;
 import com.tapitapp.tapitapp.model.Comandas;
+import com.tapitapp.tapitapp.model.LineaCuenta;
 import com.tapitapp.tapitapp.util.AdapterComanda;
 
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ public class ComandaActivity extends AppCompatActivity {
     ArrayList<Comandas>ListComandas;
     RecyclerView recycler;
     Button enviar;
+    ImageButton home;
     conexionSQLiteHelper conn;
 
     @Override
@@ -33,6 +37,7 @@ public class ComandaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comanda);
 
         enviar=(Button)findViewById(R.id.btnEnviar);
+        home=(ImageButton)findViewById(R.id.buttonHome);
 
         conn=new conexionSQLiteHelper(getApplicationContext(),"Tapitapp.db",null,utilidades.VERSION);
 
@@ -48,6 +53,13 @@ public class ComandaActivity extends AppCompatActivity {
 
         recycler.setAdapter(adapter);
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),MenuPrincipal.class);
+                startActivity(intent);
+            }
+        });
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +67,8 @@ public class ComandaActivity extends AppCompatActivity {
                 Insertarcomanda();
                 SQLiteDatabase db = conn.getWritableDatabase();
                 db.execSQL("DELETE FROM linea");
+                Intent intent=new Intent(getApplicationContext(),Marchando.class);
+                startActivity(intent);
             }
         });
 

@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/txtComanda"
-            android:layout_width="match_parent"
+            android:layout_width="393dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/pilo"
@@ -29,6 +29,7 @@
             android:textColor="@color/white"
             android:textSize="60sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,13 +42,24 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
 
     <LinearLayout
-        android:layout_width="384dp"
-        android:layout_height="68dp"
+        android:layout_width="381dp"
+        android:layout_height="111dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListComanda">
+
+        <ImageButton
+            android:id="@+id/buttonHome"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/esquinas_redondasbutton"
+            app:srcCompat="@drawable/ic_home"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/btnEnviar"

@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ProductosRepository {
 
-    private String Url = "http://tapitapp.orgfree.com/servicioPHP/Productos/";
+    private String Url = "http://servicio.tapitapp.es/servicioPHP/Productos/";
 
     //---------METODOS PUBLICOS---------//
 

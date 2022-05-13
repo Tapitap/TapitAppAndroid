@@ -12,10 +12,11 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MesasRepository {
+    private String Url = "http://servicio.tapitapp.es/servicioPHP/Users/";
 
     public String getLogin(String username, String password) throws Exception {
         ConexionPOST conexionPOST = new ConexionPOST();
-        String[] params = {"http://tapitapp.orgfree.com/servicioPHP/Users/login.php","username",username,"password",password};
+        String[] params = {Url + "login.php","username",username,"password",password};
         String result = conexionPOST.execute(params).get();
         JSONObject json = new JSONObject(result);
 
@@ -32,7 +33,7 @@ public class MesasRepository {
         Mesas mesa = null;
         ConexionGET conexionGET = new ConexionGET();
         try{
-            String result = conexionGET.execute("http://tapitapp.orgfree.com/servicioPHP/Users/getMesaByUsername.php?username=" + username).get();
+            String result = conexionGET.execute(Url + "getMesaByUsername.php?username=" + username).get();
             JSONObject json = new JSONObject(result);
 
             String estado = json.getString("estado");

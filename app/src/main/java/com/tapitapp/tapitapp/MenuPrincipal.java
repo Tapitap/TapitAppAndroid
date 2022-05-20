@@ -14,7 +14,7 @@ import android.widget.Button;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-    Button cerrar;
+    Button comanda;
     Button cartacomida;
     Button cartaBebida;
     Button cartaPostre;
@@ -26,7 +26,7 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        cerrar=findViewById(R.id.btnCerrar);
+        comanda=findViewById(R.id.btnCcomanda);
         cartacomida=(Button)findViewById(R.id.btnCarta);
         cartaBebida=(Button)findViewById(R.id.btnBebidas);
         cartaPostre=(Button)findViewById(R.id.btnPostres);
@@ -34,12 +34,10 @@ public class MenuPrincipal extends AppCompatActivity {
         btnCuenta=(Button)findViewById(R.id.btnCuenta);
 
 
-        cerrar.setOnClickListener(new View.OnClickListener() {
+        comanda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-                preferences.edit().clear().commit();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),ComandaActivity.class);
                 startActivity(intent);
                 finish();
             }

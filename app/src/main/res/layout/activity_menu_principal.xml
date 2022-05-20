@@ -123,15 +123,15 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/btnCerrar"
+            android:id="@+id/btnCcomanda"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:drawableTop="@drawable/cerrarsesion"
-            android:text="Cerrar Sesion"
+            android:drawableTop="@drawable/camarero2"
             android:fontFamily="@font/summer"
+            android:text="Comanda"
             android:textColor="@color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -118,7 +118,7 @@ public class ComandaActivity extends AppCompatActivity {
     private void EnviarComanda(){
         SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
         try{
-            int id_comanda = repository.InsertComanda(preferences.getInt("id_manager",1));
+            int id_comanda = repository.InsertComanda(preferences.getInt("numero",1));
             for (Comandas comanda:ListComandas){
                 repository.InsertLinea(id_comanda,comanda.getId_producto(),comanda.getId_precio(),comanda.getCantidad());
             }

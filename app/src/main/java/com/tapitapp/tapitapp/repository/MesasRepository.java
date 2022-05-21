@@ -50,14 +50,48 @@ public class MesasRepository {
         return mesa;
     }
 
+    public boolean GetSession(String username){
+        ConexionGET conexionGET = new ConexionGET();
+        try{
+            String result = conexionGET.execute(Url + "getUserSession.php?username=" + username).get();
+            JSONObject json = new JSONObject(result);
+
+            String estado = json.getString("estado");
+
+            switch (estado) {
+                case "1":
+                    if(json.getString("log").equals("1")) return true;
+                case "-1":
+                    throw new Exception(json.getString("mensaje"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void SetSession(String username,String value) throws Exception{
+        ConexionPOST conexionPOST = new ConexionPOST();
+        String[] params = {Url + "setUserSession.php","username",username,"value",value};
+        String result = conexionPOST.execute(params).get();
+        JSONObject json = new JSONObject(result);
+
+        String estado = json.getString("estado");
+
+        if(estado.equals("-1")){
+            throw new Exception(json.getString("mensaje"));
+        }
+    }
+
     private Mesas parseJSONToMesa(JSONObject json) throws JSONException {
 
         String user = json.getString("username");
         boolean enable = !Boolean.parseBoolean(json.getString("enable"));
+        Integer id = Integer.parseInt(json.getString("id"));
         Integer numero = Integer.parseInt(json.getString("numero"));
         Integer id_manager = Integer.parseInt(json.getString("enable"));
         String authority = json.getString("authority");
 
-        return new Mesas(user,enable,authority,numero,id_manager);
+        return new Mesas(user,enable,authority,id,numero,id_manager);
     }
 }

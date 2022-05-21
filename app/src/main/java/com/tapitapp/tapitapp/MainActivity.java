@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (res){
                         case "mesa":
                             mesa = repository.GetByUsername(user);
+                            repository.SetSession(mesa.getUsername(),"1");
                             Intent intent = new Intent(getApplicationContext(),MenuPrincipal.class);
                             guardarPreferencias();
                             startActivity(intent);
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("usuario",user);
         editor.putString("password",pass);
         editor.putBoolean("sesion", true);
+        editor.putInt("id",mesa.getId());
         editor.putInt("numero",mesa.getNum());
         editor.putInt("id_manager",mesa.getId_manager());
         editor.commit();

@@ -15,13 +15,14 @@ import com.tapitapp.tapitapp.model.Cuentas;
 import com.tapitapp.tapitapp.model.LineaCuenta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterCuenta extends RecyclerView.Adapter<AdapterCuenta.ViewHoldersCuentas> {
-    ArrayList<LineaCuenta> ListCuentas;
+    List<LineaCuenta> ListCuentas;
     Integer id;
     conexionSQLiteHelper conn;
 
-    public AdapterCuenta(ArrayList<LineaCuenta> listLineaCuentas) {
+    public AdapterCuenta(List<LineaCuenta> listLineaCuentas) {
         ListCuentas=listLineaCuentas;
     }
 
@@ -61,7 +62,7 @@ public class AdapterCuenta extends RecyclerView.Adapter<AdapterCuenta.ViewHolder
 
             txtNombre.setText(lineaCuenta.getNombreLinea());
             txtCantidad.setText(lineaCuenta.getCantidadLinea().toString());
-            txtTotal.setText(lineaCuenta.getTotalCuenta().toString());
+            txtTotal.setText(Util.NumberFormat(lineaCuenta.getTotal()));
 
         }
     }

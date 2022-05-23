@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class utilidades {
 
-    public static final Integer VERSION =2;
+    public static final Integer VERSION =3;
 
     //constantes campos tabla
     public static final String TABLA_LINEA="linea";

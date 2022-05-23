@@ -18,14 +18,17 @@ import com.tapitapp.tapitapp.db.utilidades;
 import com.tapitapp.tapitapp.model.Comandas;
 import com.tapitapp.tapitapp.model.Cuentas;
 import com.tapitapp.tapitapp.model.LineaCuenta;
+import com.tapitapp.tapitapp.repository.ComandaRepository;
 import com.tapitapp.tapitapp.util.AdapterComanda;
 import com.tapitapp.tapitapp.util.AdapterCuenta;
+import com.tapitapp.tapitapp.util.Util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CuentaActivity extends AppCompatActivity {
-    ArrayList<LineaCuenta> ListLineaCuentas;
-    ArrayList<Comandas> ListComanda_cuentas;
+    private ComandaRepository repository = new ComandaRepository();
+    List<LineaCuenta> ListLineaCuentas;
     RecyclerView recycler;
     TextView txtTotalCuenta;
     Button pedir,volver;
@@ -42,11 +45,11 @@ public class CuentaActivity extends AppCompatActivity {
         txtTotalCuenta=(TextView) findViewById(R.id.txt_cuenta);
         volver=(Button)findViewById(R.id.btnVolver);
         pedir=(Button)findViewById(R.id.btnPedir);
-        ListLineaCuentas=new ArrayList<>();
+        ListLineaCuentas=repository.getLineasServidas(1);
 
-        consultarCuenta();
-        Double total = ListLineaCuentas.stream().mapToDouble(x->x.getTotalCuenta()).sum();
-        txtTotalCuenta.setText("Total: " + total.toString());
+        //consultarCuenta();
+        Double total = ListLineaCuentas.stream().mapToDouble(x->x.getTotal()).sum();
+        txtTotalCuenta.setText("Total: " + Util.NumberFormat(total) + "€");
 
         AdapterCuenta adapter= new AdapterCuenta(ListLineaCuentas);
 
@@ -75,7 +78,7 @@ public class CuentaActivity extends AppCompatActivity {
             LineaCuenta.setId_lineaCuenta(cursor.getInt(0));
             LineaCuenta.setNombreLinea(cursor.getString(1));
             LineaCuenta.setCantidadLinea(cursor.getInt(2));
-            LineaCuenta.setTotalCuenta(cursor.getDouble(3));
+            LineaCuenta.setTotal(cursor.getDouble(3));
 
             ListLineaCuentas.add(LineaCuenta);
         }

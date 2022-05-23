@@ -53,7 +53,7 @@ public class ComandaActivity extends AppCompatActivity {
 
         consultar();
 
-        AdapterComanda adapter = new AdapterComanda(ListComandas);
+        AdapterComanda adapter = new AdapterComanda(ListComandas, getApplicationContext());
 
 
         recycler.setAdapter(adapter);

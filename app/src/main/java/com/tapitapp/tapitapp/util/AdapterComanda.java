@@ -1,6 +1,7 @@
 package com.tapitapp.tapitapp.util;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,10 +34,12 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
 
     ArrayList<Comandas>ListComandas;
     Integer id;
-    conexionSQLiteHelper conn;
+    Context Context;
+    conexionSQLiteHelper conn = new conexionSQLiteHelper(Context,"Tapitapp.db",null,utilidades.VERSION);
 
-    public AdapterComanda(ArrayList<Comandas> listComandas) {
+    public AdapterComanda(ArrayList<Comandas> listComandas, Context context) {
         ListComandas = listComandas;
+        Context = context;
     }
 
 

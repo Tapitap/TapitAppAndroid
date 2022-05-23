@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -45,7 +47,10 @@ public class CuentaActivity extends AppCompatActivity {
         txtTotalCuenta=(TextView) findViewById(R.id.txt_cuenta);
         volver=(Button)findViewById(R.id.btnVolver);
         pedir=(Button)findViewById(R.id.btnPedir);
-        ListLineaCuentas=repository.getLineasServidas(1);
+
+        SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+
+        ListLineaCuentas=repository.getLineasServidas(preferences.getInt("id",-1));
 
         //consultarCuenta();
         Double total = ListLineaCuentas.stream().mapToDouble(x->x.getTotal()).sum();

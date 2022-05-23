@@ -72,7 +72,7 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
         ListView lw;
         public ViewHolderDatos(View itemView) {
             super(itemView);
-            conn=new conexionSQLiteHelper(itemView.getContext(), "Tapitapp.db",null,1);
+            conn=new conexionSQLiteHelper(itemView.getContext(), "Tapitapp.db",null,utilidades.VERSION);
             txtNombre=(TextView) itemView.findViewById(R.id.txtNombrePlato);
             txtCantidad=(TextView) itemView.findViewById(R.id.txtCantidad2);
             txtTotal=(TextView) itemView.findViewById(R.id.txtTotal);
@@ -84,7 +84,7 @@ public class AdapterComanda extends RecyclerView.Adapter<AdapterComanda.ViewHold
         public void bindata(Comandas comandas) {
             txtNombre.setText(comandas.getNombre());
             txtCantidad.setText("cantidad: " + comandas.getCantidad().toString());
-            txtTotal.setText("Precio: "+ comandas.getTotal().toString());
+            txtTotal.setText("Precio: "+ Util.NumberFormat(comandas.getTotal()));
             Borrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

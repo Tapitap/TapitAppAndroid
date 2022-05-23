@@ -73,12 +73,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             if (item.getTipo().equals("comida")) {
                 String precio2 = "";
                 for (Precios p : item.getPrecios()) {
-                    precio2 += p.getTipo() + ": " + p.getCuantia() + "€ ";
+                    precio2 += p.getTipo() + ": " + Util.NumberFormat(p.getCuantia()) + "€ ";
                 }
                 precio.setText(precio2);
             } else {
                 //precio.setVisibility(View.VISIBLE);
-                precio.setText("Precio: "+item.getPrecios().get(0).getCuantia().toString() + "€");
+                precio.setText("Precio: "+Util.NumberFormat(item.getPrecios().get(0).getCuantia()) + "€");
                 //descripcion.setVisibility(View.INVISIBLE);
             }
 

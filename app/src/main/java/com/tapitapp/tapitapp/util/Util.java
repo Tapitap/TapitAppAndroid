@@ -17,4 +17,12 @@ public class Util {
         DecimalFormat formato = new DecimalFormat(patron);
         return formato.format(numero);
     }
+
+    public static String ConvertoToString(boolean bol){
+        if(bol){
+            return "1";
+        }else{
+            return "0";
+        }
+    }
 }

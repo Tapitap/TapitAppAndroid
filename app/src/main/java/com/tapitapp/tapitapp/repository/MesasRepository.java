@@ -70,9 +70,9 @@ public class MesasRepository {
         return false;
     }
 
-    public void SetSession(String username,String value) throws Exception{
+    public void SetSession(String username,String log, String enable) throws Exception{
         ConexionPOST conexionPOST = new ConexionPOST();
-        String[] params = {Url + "setUserSession.php","username",username,"value",value};
+        String[] params = {Url + "setUserMesa.php","username",username,"log",log,"enable",enable};
         String result = conexionPOST.execute(params).get();
         JSONObject json = new JSONObject(result);
 

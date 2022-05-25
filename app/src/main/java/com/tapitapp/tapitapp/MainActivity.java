@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.tapitapp.tapitapp.model.Mesas;
 import com.tapitapp.tapitapp.repository.MesasRepository;
+import com.tapitapp.tapitapp.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (res){
                         case "mesa":
                             mesa = repository.GetByUsername(user);
-                            repository.SetSession(mesa.getUsername(),"1");
+                            repository.SetSession(mesa.getUsername(),"1", Util.ConvertoToString(mesa.getEnable()));
                             Intent intent = new Intent(getApplicationContext(),MenuPrincipal.class);
                             guardarPreferencias();
                             startActivity(intent);

@@ -40,7 +40,7 @@ public class MesasRepository {
 
             switch (estado) {
                 case "1":
-                    return parseJSONToMesa(json.getJSONObject("MesaUser"));
+                    return new Mesas(json.getJSONObject("MesaUser"));
                 case "-1":
                     throw new Exception(json.getString("mensaje"));
             }
@@ -81,17 +81,5 @@ public class MesasRepository {
         if(estado.equals("-1")){
             throw new Exception(json.getString("mensaje"));
         }
-    }
-
-    private Mesas parseJSONToMesa(JSONObject json) throws JSONException {
-
-        String user = json.getString("username");
-        boolean enable = !Boolean.parseBoolean(json.getString("enable"));
-        Integer id = Integer.parseInt(json.getString("id"));
-        Integer numero = Integer.parseInt(json.getString("numero"));
-        Integer id_manager = Integer.parseInt(json.getString("enable"));
-        String authority = json.getString("authority");
-
-        return new Mesas(user,enable,authority,id,numero,id_manager);
     }
 }

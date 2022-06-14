@@ -46,7 +46,7 @@ public class CuentaActivity extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         txtTotalCuenta=(TextView) findViewById(R.id.txt_cuenta);
         volver=(Button)findViewById(R.id.btnVolver);
-        pedir=(Button)findViewById(R.id.btnPedir);
+
 
         SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
 
